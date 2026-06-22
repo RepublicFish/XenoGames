@@ -10,23 +10,20 @@
 - [x] CLAUDE.md 指引文件
 - [x] 创建开发日志文件
 - [x] **后端项目搭建** — Maven 项目 + 配置 + 实体 + Repository + DTO + 通用模块 + 配置类
-  - pom.xml（Spring Boot 3.3.0, JPA, MySQL, Lombok, Validation）
-  - 3 实体: Game, Tag, Screenshot + GameStatus 枚举
-  - 3 Repository: GameRepository(含多条件分页查询), TagRepository, ScreenshotRepository
-  - 6 DTO: GameCreateDTO, GameUpdateDTO, GameQueryDTO, GameVO, TagDTO, ScreenshotVO
-  - 通用模块: Result<T>, GlobalExceptionHandler, BusinessException
-  - 配置: CORS, JPA Auditing, 静态资源映射
-- [x] **包名重构** — 全部 `com.gamevault` → `com.xenogames`，`GameVaultApplication` → `XenoGamesApplication`
+- [x] **包名重构** — 全部 `com.gamevault` → `com.xenogames`
 - [x] **后端业务逻辑** — 3 Service + 3 Controller
-  - GameService: 分页搜索筛选、CRUD、Entity↔DTO 转换
-  - TagService: 标签 CRUD、重名校验
-  - FileService: 文件上传（UUID 命名、格式校验、分目录存储）
-  - GameController: GET/POST/PUT/DELETE `/api/games`
-  - TagController: GET/POST/DELETE `/api/tags`
-  - FileController: POST `/api/files/upload`
+- [x] **前端项目搭建** — Vite + Vue 3 + Element Plus + 路由 + API 层 + Pinia Store
+  - 项目脚手架: package.json, vite.config.js, index.html
+  - 核心入口: main.js, App.vue（顶部导航 + router-view）
+  - 路由: 4 条路由（列表 / 详情 / 新增 / 编辑）
+  - API 层: game.js, tag.js, file.js（含 file 的 FormData 上传）
+  - 请求工具: request.js（axios 实例 + 响应拦截 + 错误提示）
+  - 代理配置: Vite 代理 /api → localhost:8080
+  - 状态管理: gameStore（列表/详情/筛选）, tagStore（全量缓存）
+  - 3 个页面占位: GameList, GameDetail, GameFormPage
+  - 依赖安装: 159 packages, 0 错误
 
 ### 待办
-- [ ] Git 提交 + 推送本次变更
-- [ ] 前端项目搭建（Vite + 依赖 + 路由 + API 层）
 - [ ] 前端页面实现（列表 + 详情 + 表单）
 - [ ] 联调测试
+- [ ] Git 推送（GitHub 502 暂未推送）
