@@ -1,6 +1,6 @@
-package com.gamevault.dto;
+package com.xenogames.dto;
 
-import com.gamevault.entity.GameStatus;
+import com.xenogames.entity.GameStatus;
 import lombok.Data;
 
 @Data

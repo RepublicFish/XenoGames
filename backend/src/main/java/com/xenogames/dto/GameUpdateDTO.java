@@ -1,6 +1,6 @@
-package com.gamevault.dto;
+package com.xenogames.dto;
 
-import com.gamevault.entity.GameStatus;
+import com.xenogames.entity.GameStatus;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class GameCreateDTO {
+public class GameUpdateDTO {
 
     @NotBlank(message = "游戏名称不能为空")
     @Size(max = 255, message = "游戏名称最多255个字符")

@@ -1,4 +1,4 @@
-package com.gamevault.common;
+package com.xenogames.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

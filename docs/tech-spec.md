@@ -24,8 +24,8 @@
 ### 包结构
 
 ```
-com.gamevault
-├── GameVaultApplication.java          # 启动类
+com.xenogames
+├── XenoGamesApplication.java          # 启动类
 ├── common/                             # 通用模块
 │   ├── Result.java                     # 统一响应体
 │   ├── GlobalExceptionHandler.java     # 全局异常处理器

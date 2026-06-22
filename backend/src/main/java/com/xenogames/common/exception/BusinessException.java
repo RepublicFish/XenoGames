@@ -1,4 +1,4 @@
-package com.gamevault.common.exception;
+package com.xenogames.common.exception;
 
 import lombok.Getter;
 

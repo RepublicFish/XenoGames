@@ -43,7 +43,7 @@ XenoGames 是一个个人单用户游戏记录应用。基于 **Spring Boot 3 + 
 
 ### 后端
 
-- 包名: `com.gamevault`
+- 包名: `com.xenogames`
 - Entity 使用 Lombok (`@Data`, `@NoArgsConstructor`, `@AllArgsConstructor`)
 - DTO 使用 `@Valid` 进行参数校验
 - JPA 审计: `@CreatedDate` / `@LastModifiedDate`

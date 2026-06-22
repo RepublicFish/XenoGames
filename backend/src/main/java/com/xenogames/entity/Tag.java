@@ -1,4 +1,4 @@
-package com.gamevault.entity;
+package com.xenogames.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

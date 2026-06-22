@@ -1,7 +1,7 @@
-package com.gamevault.repository;
+package com.xenogames.repository;
 
-import com.gamevault.entity.Game;
-import com.gamevault.entity.GameStatus;
+import com.xenogames.entity.Game;
+import com.xenogames.entity.GameStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

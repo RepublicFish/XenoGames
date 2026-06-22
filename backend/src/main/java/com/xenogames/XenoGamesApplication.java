@@ -1,12 +1,12 @@
-package com.gamevault;
+package com.xenogames;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GameVaultApplication {
+public class XenoGamesApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GameVaultApplication.class, args);
+        SpringApplication.run(XenoGamesApplication.class, args);
     }
 }

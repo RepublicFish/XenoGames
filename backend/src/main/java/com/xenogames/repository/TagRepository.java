@@ -1,6 +1,6 @@
-package com.gamevault.repository;
+package com.xenogames.repository;
 
-import com.gamevault.entity.Tag;
+import com.xenogames.entity.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
