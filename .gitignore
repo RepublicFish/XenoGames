@@ -22,10 +22,6 @@ Thumbs.db
 uploads/
 backend/uploads/
 
-# === Build ===
-XenoGames.jar
-backend/src/main/resources/static/
-
 # === Claude ===
 .claude/
 
