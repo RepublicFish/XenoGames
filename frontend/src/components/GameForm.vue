@@ -68,7 +68,7 @@
     <el-row :gutter="20" style="margin-bottom: 24px">
       <el-col :span="12">
         <el-form-item label="封面图片">
-          <div class="cover-uploader">
+          <div class="cover-uploader" v-loading="uploading" element-loading-text="上传中...">
             <el-upload
               :auto-upload="false"
               :show-file-list="false"
@@ -82,15 +82,6 @@
                 <span>拖拽或点击上传</span>
               </div>
             </el-upload>
-            <el-button
-              v-if="coverFile"
-              type="primary"
-              size="small"
-              :loading="uploading"
-              @click="uploadCover"
-            >
-              上传封面
-            </el-button>
           </div>
         </el-form-item>
       </el-col>
@@ -236,16 +227,13 @@ watch(() => form.status, () => {
   }
 })
 
-function onCoverChange(file) {
+async function onCoverChange(file) {
   coverFile.value = file.raw
   coverPreview.value = URL.createObjectURL(file.raw)
-}
-
-async function uploadCover() {
-  if (!coverFile.value) return
+  // 自动上传，不需要额外点击
   uploading.value = true
   try {
-    const res = await uploadFile(coverFile.value, 'cover')
+    const res = await uploadFile(file.raw, 'cover')
     form.coverImageUrl = res.data.url
     ElMessage.success('封面上传成功')
   } catch {
