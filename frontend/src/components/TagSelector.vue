@@ -68,7 +68,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { useTagStore } from '@/stores/tagStore'
@@ -82,6 +82,11 @@ const emit = defineEmits(['update:modelValue'])
 const tagStore = useTagStore()
 const selectedIds = ref([...props.modelValue])
 const tags = ref([])
+
+// 父组件 modelValue 变化时同步
+watch(() => props.modelValue, (val) => {
+  selectedIds.value = [...val]
+})
 const popVisible = ref(false)
 const newTagName = ref('')
 const newTagColor = ref('#409EFF')

@@ -225,9 +225,7 @@ watch(() => props.initialData, (data) => {
     completionDate: data.completionDate || null
   })
   coverFile.value = null
-  if (data.coverImageUrl) {
-    coverPreview.value = data.coverImageUrl
-  }
+  coverPreview.value = data.coverImageUrl || ''
 }, { deep: true, immediate: true })
 
 watch(() => form.status, () => {
