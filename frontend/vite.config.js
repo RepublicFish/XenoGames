@@ -21,5 +21,8 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    outDir: '../backend/src/main/resources/static'
   }
 })
