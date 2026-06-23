@@ -45,7 +45,6 @@
             placeholder="选择开始日期"
             model-type="yyyy-MM-dd"
             auto-apply
-            teleport-center
           />
         </el-form-item>
       </el-col>
@@ -57,7 +56,6 @@
             placeholder="选择完成日期"
             model-type="yyyy-MM-dd"
             auto-apply
-            teleport-center
           />
         </el-form-item>
       </el-col>
