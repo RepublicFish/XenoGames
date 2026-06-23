@@ -3,16 +3,17 @@
     ref="formRef"
     :model="form"
     :rules="rules"
-    label-width="90px"
+    label-width="80px"
     class="game-form"
   >
-    <el-row :gutter="24">
-      <el-col :span="14">
+    <!-- 第一行: 名称 + 平台 + 状态 -->
+    <el-row :gutter="20">
+      <el-col :span="12">
         <el-form-item label="游戏名称" prop="gameTitle">
           <el-input v-model="form.gameTitle" placeholder="输入游戏名称" maxlength="255" />
         </el-form-item>
       </el-col>
-      <el-col :span="5">
+      <el-col :span="6">
         <el-form-item label="平台" prop="platform">
           <el-select v-model="form.platform" placeholder="选择平台">
             <el-option label="PC" value="PC" />
@@ -26,7 +27,7 @@
           </el-select>
         </el-form-item>
       </el-col>
-      <el-col :span="5">
+      <el-col :span="6">
         <el-form-item label="状态" prop="status">
           <el-select v-model="form.status" placeholder="选择状态">
             <el-option label="游玩中" value="PLAYING" />
@@ -37,7 +38,8 @@
       </el-col>
     </el-row>
 
-    <el-row :gutter="24">
+    <!-- 第二行: 日期 -->
+    <el-row :gutter="20">
       <el-col :span="12">
         <el-form-item label="开始日期">
           <VueDatePicker
@@ -62,57 +64,68 @@
       </el-col>
     </el-row>
 
-    <el-form-item label="封面图片">
-      <el-upload
-        class="cover-uploader"
-        :auto-upload="false"
-        :show-file-list="false"
-        :on-change="onCoverChange"
-        accept="image/jpeg,image/png,image/webp"
-        drag
-      >
-        <img v-if="coverPreview" :src="coverPreview" class="cover-preview" />
-        <div v-else class="upload-placeholder">
-          <el-icon :size="32"><Plus /></el-icon>
-          <span>拖拽或点击上传封面</span>
-        </div>
-      </el-upload>
-      <el-button
-        v-if="coverFile"
-        type="primary"
-        size="small"
-        :loading="uploading"
-        style="margin-top: 8px"
-        @click="uploadCover"
-      >
-        上传封面
-      </el-button>
-    </el-form-item>
+    <!-- 第三行: 封面(左) + 标签(右) 并排 -->
+    <el-row :gutter="20">
+      <el-col :span="12">
+        <el-form-item label="封面图片">
+          <div class="cover-uploader">
+            <el-upload
+              :auto-upload="false"
+              :show-file-list="false"
+              :on-change="onCoverChange"
+              accept="image/jpeg,image/png,image/webp"
+              drag
+            >
+              <img v-if="coverPreview" :src="coverPreview" class="cover-preview" />
+              <div v-else class="upload-placeholder">
+                <el-icon :size="28"><Plus /></el-icon>
+                <span>拖拽或点击上传</span>
+              </div>
+            </el-upload>
+            <el-button
+              v-if="coverFile"
+              type="primary"
+              size="small"
+              :loading="uploading"
+              @click="uploadCover"
+            >
+              上传封面
+            </el-button>
+          </div>
+        </el-form-item>
+      </el-col>
+      <el-col :span="12">
+        <el-form-item label="标签">
+          <TagSelector v-model="form.tagIds" />
+        </el-form-item>
+      </el-col>
+    </el-row>
 
-    <el-form-item label="标签">
-      <TagSelector v-model="form.tagIds" />
-    </el-form-item>
-
+    <!-- 第四行: 游玩感受 -->
     <el-form-item label="游玩感受">
       <md-editor
         v-model="form.gameplayExperience"
         :toolbars="toolbars"
-        style="height: 260px"
+        style="height: 400px"
         preview-theme="default"
         language="zh-CN"
+        placeholder="记录操作手感、游戏机制等..."
       />
     </el-form-item>
 
+    <!-- 第五行: 通关感受 -->
     <el-form-item v-if="form.status === 'COMPLETED'" label="通关感受">
       <md-editor
         v-model="form.storyExperience"
         :toolbars="toolbars"
-        style="height: 260px"
+        style="height: 400px"
         preview-theme="default"
         language="zh-CN"
+        placeholder="记录剧情、结局感悟等..."
       />
     </el-form-item>
 
+    <!-- 评分 -->
     <el-form-item
       v-if="form.status === 'COMPLETED'"
       label="评分"
@@ -270,37 +283,38 @@ async function onSubmit() {
 
 <style scoped>
 .game-form {
-  max-width: 900px;
+  max-width: 960px;
 }
 
+/* 封面上传 */
 .cover-uploader :deep(.el-upload) {
   border: 1px dashed #d9d9d9;
   border-radius: 8px;
   cursor: pointer;
-  width: 260px;
-  height: 160px;
+  width: 200px;
+  height: 120px;
 }
 .cover-uploader :deep(.el-upload:hover) {
   border-color: #409EFF;
 }
 
 .cover-preview {
-  width: 260px;
-  height: 160px;
+  width: 200px;
+  height: 120px;
   object-fit: cover;
   border-radius: 8px;
 }
 
 .upload-placeholder {
-  width: 260px;
-  height: 160px;
+  width: 200px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #c0c4cc;
-  font-size: 13px;
-  gap: 8px;
+  font-size: 12px;
+  gap: 6px;
 }
 
 .rating-wrapper {
