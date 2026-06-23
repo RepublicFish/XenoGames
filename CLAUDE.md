@@ -51,7 +51,7 @@ XenoGames 是一个个人单用户游戏记录应用。基于 **Spring Boot 3 + 
 
 ### 前端
 
-- 统一 Axios 实例 `/src/api/request.js`，baseURL 指向 `http://localhost:8080/api`
+- 统一 Axios 实例 `/src/api/request.js`，baseURL 指向 `http://localhost:18080/api`
 - 页面组件放在 `views/`，可复用组件放在 `components/`
 - 表单新增和编辑共用同一个组件，通过 props 区分模式
 
