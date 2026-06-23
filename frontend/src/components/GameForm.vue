@@ -65,7 +65,7 @@
     </el-row>
 
     <!-- 第三行: 封面(左) + 标签(右) 并排 -->
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin-bottom: 24px">
       <el-col :span="12">
         <el-form-item label="封面图片">
           <div class="cover-uploader">
@@ -102,11 +102,11 @@
     </el-row>
 
     <!-- 第四行: 游玩感受 -->
-    <el-form-item label="游玩感受">
+    <el-form-item label="游玩感受" style="margin-top: 8px">
       <md-editor
         v-model="form.gameplayExperience"
         :toolbars="toolbars"
-        style="height: 400px"
+        style="height: 520px"
         preview-theme="default"
         language="zh-CN"
         placeholder="记录操作手感、游戏机制等..."
@@ -114,11 +114,11 @@
     </el-form-item>
 
     <!-- 第五行: 通关感受 -->
-    <el-form-item v-if="form.status === 'COMPLETED'" label="通关感受">
+    <el-form-item v-if="form.status === 'COMPLETED'" label="通关感受" style="margin-top: 8px">
       <md-editor
         v-model="form.storyExperience"
         :toolbars="toolbars"
-        style="height: 400px"
+        style="height: 520px"
         preview-theme="default"
         language="zh-CN"
         placeholder="记录剧情、结局感悟等..."
