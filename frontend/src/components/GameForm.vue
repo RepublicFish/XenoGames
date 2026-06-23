@@ -153,7 +153,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch, onMounted } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { MdEditor } from 'md-editor-v3'
@@ -209,25 +209,26 @@ const rules = {
   ]
 }
 
-onMounted(() => {
-  if (props.initialData.gameTitle) {
-    Object.assign(form, {
-      gameTitle: props.initialData.gameTitle || '',
-      platform: props.initialData.platform || '',
-      status: props.initialData.status || 'PLAYING',
-      gameplayExperience: props.initialData.gameplayExperience || '',
-      storyExperience: props.initialData.storyExperience || '',
-      rating: props.initialData.rating || null,
-      coverImageUrl: props.initialData.coverImageUrl || '',
-      tagIds: props.initialData.tags?.map(t => t.id) || [],
-      startDate: props.initialData.startDate || null,
-      completionDate: props.initialData.completionDate || null
-    })
-    if (props.initialData.coverImageUrl) {
-      coverPreview.value = props.initialData.coverImageUrl
-    }
+// 监听 initialData 变化（编辑模式下异步加载）
+watch(() => props.initialData, (data) => {
+  if (!data || !data.gameTitle) return
+  Object.assign(form, {
+    gameTitle: data.gameTitle || '',
+    platform: data.platform || '',
+    status: data.status || 'PLAYING',
+    gameplayExperience: data.gameplayExperience || '',
+    storyExperience: data.storyExperience || '',
+    rating: data.rating || null,
+    coverImageUrl: data.coverImageUrl || '',
+    tagIds: data.tags?.map(t => t.id) || [],
+    startDate: data.startDate || null,
+    completionDate: data.completionDate || null
+  })
+  coverFile.value = null
+  if (data.coverImageUrl) {
+    coverPreview.value = data.coverImageUrl
   }
-})
+}, { deep: true, immediate: true })
 
 watch(() => form.status, () => {
   if (form.status !== 'COMPLETED') {
