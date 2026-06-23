@@ -41,6 +41,6 @@ server:
 # 应用自定义配置
 app:
   upload:
-    path: ./uploads
+    path: ${user.dir}/uploads
     cover-dir: covers
     screenshot-dir: screenshots
