@@ -18,6 +18,9 @@
       >
         {{ statusLabel }}
       </el-tag>
+      <div class="delete-btn" @click.stop="$emit('delete', game)">
+        <el-icon :size="16"><Close /></el-icon>
+      </div>
     </div>
     <div class="card-body">
       <h3 class="card-title">{{ game.gameTitle }}</h3>
@@ -46,10 +49,13 @@
 
 <script setup>
 import { computed } from 'vue'
+import { Close } from '@element-plus/icons-vue'
 
 const props = defineProps({
   game: { type: Object, required: true }
 })
+
+defineEmits(['delete'])
 
 const statusLabel = computed(() => {
   const map = { PLAYING: '游玩中', COMPLETED: '已通关', ABANDONED: '已弃坑' }
@@ -101,6 +107,29 @@ const statusType = computed(() => {
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.game-card:hover .delete-btn {
+  opacity: 1;
+}
+.delete-btn:hover {
+  background: #f56c6c;
 }
 
 .card-body {

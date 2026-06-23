@@ -7,6 +7,7 @@
         v-for="game in gameStore.games"
         :key="game.id"
         :game="game"
+        @delete="onDelete"
       />
     </div>
 
@@ -41,7 +42,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { useGameStore } from '@/stores/gameStore'
 import { useTagStore } from '@/stores/tagStore'
@@ -76,6 +77,21 @@ function onPageChange(page) {
   currentPage.value = page
   gameStore.fetchGames(page)
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+async function onDelete(game) {
+  try {
+    await ElMessageBox.confirm(
+      `确定删除「${game.gameTitle}」吗？此操作不可撤销。`,
+      '确认删除',
+      { type: 'warning', confirmButtonText: '删除', cancelButtonText: '取消' }
+    )
+    await gameStore.removeGame(game.id)
+    ElMessage.success('删除成功')
+    gameStore.fetchGames(currentPage.value)
+  } catch {
+    // 用户取消
+  }
 }
 </script>
 
