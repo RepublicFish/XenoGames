@@ -16,10 +16,11 @@
         <el-form-item label="平台" prop="platform">
           <el-select v-model="form.platform" placeholder="选择平台">
             <el-option label="PC" value="PC" />
-            <el-option label="PS5" value="PS5" />
-            <el-option label="PS4" value="PS4" />
-            <el-option label="Switch" value="Switch" />
-            <el-option label="Xbox Series X" value="Xbox Series X" />
+            <el-option label="PlayStation" value="PlayStation" />
+            <el-option label="Xbox" value="Xbox" />
+            <el-option label="Nintendo Switch" value="Nintendo Switch" />
+            <el-option label="多端互通" value="多端互通" />
+            <el-option label="模拟器" value="模拟器" />
             <el-option label="Mobile" value="Mobile" />
             <el-option label="Other" value="Other" />
           </el-select>
