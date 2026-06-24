@@ -103,6 +103,7 @@
         preview-theme="default"
         language="zh-CN"
         placeholder="记录操作手感、游戏机制等..."
+        :on-upload-img="onUploadEditorImg"
       />
     </el-form-item>
 
@@ -115,6 +116,7 @@
         preview-theme="default"
         language="zh-CN"
         placeholder="记录剧情、结局感悟等..."
+        :on-upload-img="onUploadEditorImg"
       />
     </el-form-item>
 
@@ -246,6 +248,19 @@ async function onCoverChange(file) {
   } finally {
     uploading.value = false
   }
+}
+
+async function onUploadEditorImg(files, callback) {
+  const urls = []
+  for (const file of files) {
+    try {
+      const res = await uploadFile(file, 'screenshot')
+      urls.push(res.data.url)
+    } catch {
+      ElMessage.error('图片上传失败')
+    }
+  }
+  callback(urls)
 }
 
 async function onSubmit() {
