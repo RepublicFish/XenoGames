@@ -166,5 +166,6 @@ const statusType = computed(() => {
 }
 .tag-chip {
   border-radius: 4px;
+  color: #303133 !important;
 }
 </style>

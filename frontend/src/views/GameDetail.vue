@@ -226,6 +226,7 @@ async function onDelete() {
 }
 .tag-chip {
   border-radius: 4px;
+  color: #303133 !important;
 }
 .info-rating {
   margin-bottom: 16px;
