@@ -68,7 +68,9 @@
     <el-row :gutter="20" style="margin-bottom: 24px">
       <el-col :span="12">
         <el-form-item label="封面图片">
-          <div class="cover-uploader" v-loading="uploading" element-loading-text="上传中...">
+          <div class="cover-uploader">
+            <span v-if="uploading" style="color:#409EFF;font-size:12px">上传中...</span>
+            <span v-else-if="form.coverImageUrl" style="color:#67C23A;font-size:12px">已上传</span>
             <el-upload
               :auto-upload="false"
               :show-file-list="false"
@@ -235,9 +237,12 @@ async function onCoverChange(file) {
   try {
     const res = await uploadFile(file.raw, 'cover')
     form.coverImageUrl = res.data.url
+    coverFile.value = null
     ElMessage.success('封面上传成功')
-  } catch {
-    // 错误已在拦截器处理
+  } catch (e) {
+    coverPreview.value = ''
+    coverFile.value = null
+    ElMessage.error('上传失败，请重试')
   } finally {
     uploading.value = false
   }
